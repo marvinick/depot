@@ -13353,3 +13353,161 @@ ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: orders.up
   Rendered /usr/local/rvm/gems/ruby-2.0.0-p353/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
   Rendered /usr/local/rvm/gems/ruby-2.0.0-p353/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
   Rendered /usr/local/rvm/gems/ruby-2.0.0-p353/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (23.2ms)
+
+
+Started GET "/orders/new" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+Processing by OrdersController#new as HTML
+  [1m[36mCart Load (0.2ms)[0m  [1mSELECT "carts".* FROM "carts" WHERE "carts"."id" = ? LIMIT 1[0m  [["id", 29]]
+  [1m[35mLineItem Exists (0.2ms)[0m  SELECT 1 AS one FROM "line_items" WHERE "line_items"."cart_id" = ? LIMIT 1  [["cart_id", 29]]
+  Rendered orders/_form.html.erb (34.8ms)
+  Rendered orders/new.html.erb within layouts/application (36.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT 1 AS one FROM "line_items" WHERE "line_items"."cart_id" = ? LIMIT 1[0m  [["cart_id", 29]]
+  [1m[35mLineItem Load (0.4ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = ?  [["cart_id", 29]]
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT "products".* FROM "products" WHERE "products"."id" = ? ORDER BY "products"."id" ASC LIMIT 1[0m  [["id", 2]]
+  Rendered line_items/_line_item.html.erb (3.6ms)
+  Rendered carts/_cart.html.erb (14.7ms)
+Completed 200 OK in 81ms (Views: 64.9ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/products.css?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/store.css?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/orders.css?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/carts.css?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/jquery.ui.effect.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/jquery.ui.effect-blind.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/carts.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/line_items.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/orders.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/store.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-01-10 15:55:15 -0600
+
+
+Started POST "/orders" for 127.0.0.1 at 2014-01-10 15:55:23 -0600
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SmLwd69vrLHxrhTA4TcR15A3LFU+Au872WwCDC3413w=", "order"=>{"name"=>"ace ", "address"=>"nfan", "email"=>"sdflsk", "pay_type"=>"Credit Card"}, "commit"=>"Place Order"}
+  [1m[35mCart Load (0.2ms)[0m  SELECT "carts".* FROM "carts" WHERE "carts"."id" = ? LIMIT 1  [["id", 29]]
+  [1m[36mLineItem Load (0.3ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = ?[0m  [["cart_id", 29]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "orders" ("address", "created_at", "email", "name", "pay_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["address", "nfan"], ["created_at", Fri, 10 Jan 2014 21:55:24 UTC +00:00], ["email", "sdflsk"], ["name", "ace "], ["pay_type", "Credit Card"], ["updated_at", Fri, 10 Jan 2014 21:55:24 UTC +00:00]]
+  [1m[35mSQL (0.4ms)[0m  UPDATE "line_items" SET "cart_id" = ?, "order_id" = ?, "updated_at" = ? WHERE "line_items"."id" = 58  [["cart_id", nil], ["order_id", 3], ["updated_at", Fri, 10 Jan 2014 21:55:24 UTC +00:00]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mCart Load (0.2ms)[0m  SELECT "carts".* FROM "carts" WHERE "carts"."id" = ? LIMIT 1  [["id", 29]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = ?  [["cart_id", 29]]
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "carts" WHERE "carts"."id" = ?[0m  [["id", 29]]
+  [1m[35m (2.2ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 26ms (ActiveRecord: 5.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+Processing by StoreController#index as HTML
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "carts" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Fri, 10 Jan 2014 21:55:24 UTC +00:00], ["updated_at", Fri, 10 Jan 2014 21:55:24 UTC +00:00]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mProduct Load (0.4ms)[0m  SELECT "products".* FROM "products" ORDER BY "products"."updated_at" DESC LIMIT 1
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT "products".* FROM "products" ORDER BY "products"."title" ASC[0m
+  Rendered store/index.html.erb within layouts/application (7.1ms)
+  [1m[35mLineItem Exists (0.2ms)[0m  SELECT 1 AS one FROM "line_items" WHERE "line_items"."cart_id" = ? LIMIT 1  [["cart_id", 30]]
+  [1m[36mLineItem Load (0.1ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."cart_id" = ?[0m  [["cart_id", 30]]
+  Rendered collection (0.0ms)
+  Rendered carts/_cart.html.erb (1.9ms)
+Completed 200 OK in 28ms (Views: 20.6ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/carts.css?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/orders.css?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/store.css?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/jquery.ui.effect.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/products.css?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/jquery.ui.effect-blind.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/carts.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/line_items.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/orders.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/store.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/ruby.jpg" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/cs.jpg" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
+
+
+Started GET "/assets/rtp.jpg" for 127.0.0.1 at 2014-01-10 15:55:24 -0600
