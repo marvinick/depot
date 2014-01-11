@@ -3,7 +3,8 @@
 <% else %>
 <tr>
 <% end %>
-  <td><%= line_item.quantity %>&times;</td>
-  <td><%= line_item.product.title %></td>
+  <td><%= sprintf("%2d x %s",
+                  line_item.quantity,
+                  truncate(line_item.product.title, length: 50)) %>
   <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
 </tr>
