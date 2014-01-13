@@ -57,3 +57,4 @@ class OrdersControllerTest < ActionController::TestCase
     assert_redirected_to orders_path
   end
 end
+
